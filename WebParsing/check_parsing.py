@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+from WebParsing import category_finder
 
 
 def products_parsing(s):
@@ -17,7 +18,7 @@ def check_parsing(headers):
     result_list = list()
     for item in products_list:
         result_list.append(item.text)
-    print(result_list)
+    category_finder.find_category(result_list)
 
 
 def parse_check(check):
@@ -39,8 +40,9 @@ def parse_check(check):
             result.update({'DocFiscalSign': item[3:]})
         elif 'n=' in item:
             result.update({'ReceiptOperationType': item[2:]})
-    return result
+    check_parsing(result)
 
 
-check_dict = parse_check('t=20181007T222800&s=1491.00&fn=8712000101109913&i=1714&fp=3297358716&n=1')
-check_parsing(check_dict)
+# t=20180930T1605&s=246.50&fn=9284000100049814&i=3365&fp=2217713016&n=1
+# t=20181007T222800&s=1491.00&fn=8712000101109913&i=1714&fp=3297358716&n=1
+parse_check('t=20181007T222800&s=1491.00&fn=8712000101109913&i=1714&fp=3297358716&n=1')
