@@ -30,7 +30,6 @@ def get_list():
 
 def get_items_list(category_list):
     table = Table('products')
-    j = 1
     for category in category_list:
         print(category)
         if '/brand' in category:
@@ -50,6 +49,7 @@ def get_items_list(category_list):
             for product in item_list:
                 items_to_dict.append(delete_spaces(product.text))
         for item in items_to_dict:
+            table.delete_info_by_name(item)
             table.insert_into({'category': category_name, 'name': item})
 
 

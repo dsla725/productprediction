@@ -31,9 +31,17 @@ class Table:
     def clear_table(self):
         return interact.execute("DROP TABLE {name}".format(name=self.name))
 
+    def count(self):
+        return interact.execute("SELECT COUNT(*) FROM {table}".format(table=self.name))
+
     def get_info_by_user_id(self, user_id, names):
         query = "SELECT {names} FROM {table} WHERE user_id like '{user_id}'".format(table=self.name, user_id=user_id,
                                                                                     names=list_to_sqlarray(names, True))
+        return interact.execute(query)
+
+    def get_info_by_name(self, name, rows):
+        query = "SELECT {names} FROM {table} WHERE name like '{name}'".format(table=self.name, name=name,
+                                                                              names=list_to_sqlarray(rows, True))
         return interact.execute(query)
 
     def create_table(self, columns):
@@ -58,6 +66,10 @@ class Table:
         query = "INSERT INTO {table_name} ({names}) VALUES({values})".format(table_name=self.name,
                                                                              names=list_to_sqlarray(names, True),
                                                                              values=list_to_sqlarray(values))
+        return interact.execute(query)
+
+    def delete_info_by_name(self, name):
+        query = "DELETE FROM {table} WHERE name like '{name}'".format(table=self.name,name=name)
         return interact.execute(query)
 
     def delete_info_by_user_id(self, user_id):
