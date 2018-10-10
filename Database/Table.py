@@ -34,8 +34,8 @@ class Table:
     def count(self):
         return interact.execute("SELECT COUNT(*) FROM {table}".format(table=self.name))
 
-    def get_info_by_user_id(self, user_id, names):
-        query = "SELECT {names} FROM {table} WHERE user_id like '{user_id}'".format(table=self.name, user_id=user_id,
+    def get_info_by_id(self, id, names):
+        query = "SELECT {names} FROM {table} WHERE id like '{id}'".format(table=self.name, id=id,
                                                                                     names=list_to_sqlarray(names, True))
         return interact.execute(query)
 
