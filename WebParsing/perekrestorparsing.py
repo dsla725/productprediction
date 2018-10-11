@@ -51,5 +51,4 @@ def get_items_list(category_list):
             table.delete_info_by_name(item)
             table.insert_into({'category': category_name, 'name': item})
 
-
 # get_items_list(get_list())
