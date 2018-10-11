@@ -11,7 +11,6 @@ html_parser = 'html.parser'
 
 
 def get_list():
-
     to_put = list()
     site = requests.get('https://www.perekrestok.ru')
     biggest_list = BeautifulSoup(site.text, html_parser)
@@ -53,4 +52,4 @@ def get_items_list(category_list):
             table.insert_into({'category': category_name, 'name': item})
 
 
-get_items_list(get_list())
+# get_items_list(get_list())
