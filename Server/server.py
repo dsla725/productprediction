@@ -1,3 +1,6 @@
-import Recommendations.recommendations as recommend
+import Recommendations.Recommendations as recommend
+import ParseTickets.Parse as pt
 
-recommend.run()
+print(pt.get_product_id(input()))
+
+#recommend.run()
